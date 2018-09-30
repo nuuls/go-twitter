@@ -50,7 +50,7 @@ type StreamFilterParams struct {
 // Filter returns messages that match one or more filter predicates.
 // https://dev.twitter.com/streaming/reference/post/statuses/filter
 func (srv *StreamService) Filter(params *StreamFilterParams) (*Stream, error) {
-	req, err := srv.public.New().Post("filter.json").QueryStruct(params).Request()
+	req, err := srv.public.New().Post("filter.json").BodyForm(params).Request()
 	if err != nil {
 		return nil, err
 	}
@@ -66,7 +66,7 @@ type StreamSampleParams struct {
 // Sample returns a small sample of public stream messages.
 // https://dev.twitter.com/streaming/reference/get/statuses/sample
 func (srv *StreamService) Sample(params *StreamSampleParams) (*Stream, error) {
-	req, err := srv.public.New().Get("sample.json").QueryStruct(params).Request()
+	req, err := srv.public.New().Get("sample.json").BodyForm(params).Request()
 	if err != nil {
 		return nil, err
 	}
@@ -87,7 +87,7 @@ type StreamUserParams struct {
 // User returns a stream of messages specific to the authenticated User.
 // https://dev.twitter.com/streaming/reference/get/user
 func (srv *StreamService) User(params *StreamUserParams) (*Stream, error) {
-	req, err := srv.user.New().Get("user.json").QueryStruct(params).Request()
+	req, err := srv.user.New().Get("user.json").BodyForm(params).Request()
 	if err != nil {
 		return nil, err
 	}
@@ -108,7 +108,7 @@ type StreamSiteParams struct {
 // Requires special permission to access.
 // https://dev.twitter.com/streaming/reference/get/site
 func (srv *StreamService) Site(params *StreamSiteParams) (*Stream, error) {
-	req, err := srv.site.New().Get("site.json").QueryStruct(params).Request()
+	req, err := srv.site.New().Get("site.json").BodyForm(params).Request()
 	if err != nil {
 		return nil, err
 	}
@@ -127,7 +127,7 @@ type StreamFirehoseParams struct {
 // Requires special permission to access.
 // https://dev.twitter.com/streaming/reference/get/statuses/firehose
 func (srv *StreamService) Firehose(params *StreamFirehoseParams) (*Stream, error) {
-	req, err := srv.public.New().Get("firehose.json").QueryStruct(params).Request()
+	req, err := srv.public.New().Get("firehose.json").BodyForm(params).Request()
 	if err != nil {
 		return nil, err
 	}
